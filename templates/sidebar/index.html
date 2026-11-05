@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>陈思远 · 高级前端工程师</title>
+<!--
+  模板：sidebar（双栏 · 单页）
+  风格：左侧信息栏 + 右侧主内容，信息密度高，**刻意设计为 1 页**。
+        适合 3~8 年经验、或需要在一页内交代完的投递场景。
+  注意：这是单页模板。内容超出会溢到第 2 页且左侧色块不会跟随，请按下面的容量建议裁剪。
+  改内容：只动 <body> 里的文字。
+  容量参考：项目 2 个 ×（1 句描述 + 3 条 bullet）、经历 2 段、技能 5 组。
+-->
+<style>
+  :root{
+    --ink:#141a22;
+    --sub:#5c6675;
+    --faint:#8c96a3;
+    --line:#e2e6eb;
+    --accent:#1f3a5f;       /* 主色：藏青 */
+    --side-bg:#f2f5f8;
+    --base-pt:9.7pt;
+    --lh:1.68;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{
+    background:#eceff2;
+    font-family:"Noto Sans SC","Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .sheet{
+    width:210mm; min-height:296mm; margin:0 auto;
+    background:#fff; display:flex; align-items:stretch;
+    font-size:var(--base-pt); line-height:var(--lh);
+  }
+
+  /* ===== 左栏 ===== */
+  .side{
+    width:64mm; flex:0 0 64mm;
+    background:var(--side-bg);
+    padding:13mm 7mm 12mm;
+  }
+  .side h1{
+    font-size:19pt; font-weight:700; letter-spacing:.14em;
+    line-height:1.2; color:var(--ink); margin-bottom:3pt;
+  }
+  .side .role{
+    font-size:8.6pt; font-weight:700; color:var(--accent);
+    letter-spacing:.06em; margin-bottom:9pt;
+  }
+  .side .blk{ margin-bottom:11pt; }
+  .side .blk:last-child{ margin-bottom:0; }
+  .side h2{
+    font-size:8.2pt; font-weight:700; letter-spacing:.2em;
+    color:var(--accent); padding-bottom:3pt;
+    border-bottom:.8pt solid #cfd8e2; margin-bottom:5pt;
+  }
+  .side ul{ list-style:none; font-size:8.6pt; color:#39424f; }
+  .side li{ margin-bottom:2.5pt; display:flex; gap:4pt; }
+  .side li .lbl{ color:var(--faint); flex:0 0 26pt; }
+  .skills-mini dt{ font-size:8.6pt; font-weight:700; margin-top:3.5pt; }
+  .skills-mini dt:first-child{ margin-top:0; }
+  .skills-mini dd{ font-size:8.4pt; color:var(--sub); }
+
+  /* ===== 右栏 ===== */
+  .main{ flex:1; padding:13mm 12mm 12mm 9mm; min-width:0; }
+  .main .sec-title{
+    display:flex; align-items:center; gap:6pt; margin-bottom:5pt; break-after:avoid;
+  }
+  .main .sec-title h2{
+    font-size:10pt; font-weight:700; letter-spacing:.12em; white-space:nowrap;
+    color:var(--accent);
+  }
+  .main .sec-title::after{ content:""; flex:1; height:1px; background:var(--line); }
+  section{ margin-bottom:9pt; }
+
+  .summary{ text-align:justify; color:#252b33; }
+  .summary em{ font-style:normal; font-weight:700; color:var(--accent); }
+
+  .item{ margin-bottom:7pt; break-inside:avoid; }
+  .item:last-child{ margin-bottom:0; }
+  .item-head{ display:flex; align-items:baseline; flex-wrap:wrap; gap:5pt; margin-bottom:2pt; }
+  .item-title{ font-size:9.6pt; font-weight:700; }
+  .when{
+    font-size:8pt; font-weight:700; color:var(--accent);
+    font-variant-numeric:tabular-nums; margin-left:auto;
+  }
+  .badge{
+    font-size:7.2pt; font-weight:700; color:var(--accent);
+    background:#eaf0f6; border-radius:2pt; padding:.5pt 4pt; letter-spacing:.04em;
+  }
+  .desc{ color:var(--sub); font-size:8.6pt; margin-bottom:2pt; text-align:justify; }
+  .desc b{ color:#39424f; }
+  ul.bullets{ list-style:none; }
+  ul.bullets li{
+    position:relative; padding-left:9pt; margin-bottom:1.4pt;
+    text-align:justify; break-inside:avoid;
+  }
+  ul.bullets li::before{
+    content:""; position:absolute; left:1pt; top:.62em;
+    width:3.2pt; height:3.2pt; border-radius:50%;
+    background:var(--accent); opacity:.55;
+  }
+  ul.bullets li > b{ font-weight:700; }
+  .k{ font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums; }
+
+  .job{
+    display:grid; grid-template-columns:52pt 1fr; gap:7pt;
+    padding:4pt 0; border-top:1px solid #f0f2f5; break-inside:avoid;
+  }
+  .job:first-of-type{ border-top:0; padding-top:0; }
+  .job .period{
+    font-size:8pt; font-weight:700; color:var(--accent);
+    font-variant-numeric:tabular-nums; padding-top:.15em;
+  }
+  .job .period small{ display:block; font-weight:400; color:var(--faint); font-size:7.4pt; }
+  .job h3{ font-size:9.2pt; font-weight:700; margin-bottom:1pt; }
+  .job h3 .sep{ color:var(--faint); font-weight:400; margin:0 3pt; }
+  .job h3 .pos{ color:var(--sub); font-weight:500; }
+  .job p{ color:#39424f; }
+
+  /* ===== 打印 ===== */
+  @page{ size:A4; margin:0; }
+  @media print{
+    html,body{ background:#fff; }
+    .sheet{ width:210mm; box-shadow:none; }
+    *{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  }
+  @media screen{
+    body{ padding:10mm 0; }
+    .sheet{ box-shadow:0 2px 14px rgba(20,30,40,.13); }
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- ===== 左栏 ===== -->
+  <aside class="side">
+    <h1>陈思远</h1>
+    <div class="role">高级前端工程师</div>
+
+    <div class="blk">
+      <h2>联系方式</h2>
+      <ul>
+        <li>上海</li>
+        <li>138-0000-0000</li>
+        <li>siyuan.chen@example.com</li>
+        <li>一周内到岗</li>
+      </ul>
+    </div>
+
+    <div class="blk">
+      <h2>核心能力</h2>
+      <dl class="skills-mini">
+        <dt>前端架构</dt>
+        <dd>Vue3 / TypeScript / Vite<br>React + Ant Design Pro</dd>
+        <dt>大型应用治理</dt>
+        <dd>qiankun / wujie 微前端<br>Design Token + 组件库<br>低代码配置化发布</dd>
+        <dt>工程化</dt>
+        <dd>Vite 构建优化<br>Docker + GitLab CI/CD<br>Jest + Playwright</dd>
+        <dt>全栈与跨端</dt>
+        <dd>Node.js（Koa）+ MongoDB<br>uni-app / Electron</dd>
+        <dt>AI 辅助研发</dt>
+        <dd>代码与单测生成<br>Code Review 辅助</dd>
+      </dl>
+    </div>
+
+    <div class="blk">
+      <h2>教育背景</h2>
+      <ul>
+        <li>江城大学</li>
+        <li>计算机科学与技术 · 本科</li>
+        <li>2013.09 — 2017.06</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- ===== 右栏 ===== -->
+  <main class="main">
+
+    <section>
+      <div class="sec-title"><h2>个人概述</h2></div>
+      <p class="summary">
+        10 年前端开发经验，其中 3 年任前端团队 Leader（5 人团队），主线是<em>B 端中后台与 SaaS 平台的架构设计与交付</em>。主导星岸科技运营后台从 0 到 1 重构并内嵌低代码能力；在云际数据建设微前端、组件库与前端监控三套基础设施，支撑 150+ 企业客户。技术栈以 Vue3 + TypeScript 为主，具备 Koa + MongoDB 全栈独立交付能力。
+      </p>
+    </section>
+
+    <section>
+      <div class="sec-title"><h2>核心项目</h2></div>
+
+      <article class="item">
+        <div class="item-head">
+          <span class="item-title">星岸 Admin Console 重构与低代码引擎</span>
+          <span class="badge">主导</span>
+          <span class="when">2023.06 — 至今</span>
+        </div>
+        <p class="desc"><b>项目描述：</b>内部运营后台，重构前页面缺乏统一规范、定制需求依赖前端排期，目标是统一 UI 规范并把常规页面转为自助配置。</p>
+        <ul class="bullets">
+          <li><b>架构重构：</b>Vue3 + TypeScript + Vite 重建基座，Design Token 收敛主题与交互规范，把逐页定制改为「物料 + 配置」范式</li>
+          <li><b>低代码引擎：</b>设计组件物料协议与页面 Schema，打通可视化搭建、物料复用、配置化发布，常规页面由业务方自助完成</li>
+          <li><b>工程质量：</b>Docker + GitLab CI/CD 统一发布；Jest 覆盖核心组件，Playwright 覆盖关键流程回归</li>
+        </ul>
+      </article>
+
+      <article class="item">
+        <div class="item-head">
+          <span class="item-title">云际数据 SaaS 前端体系：微前端 + 组件库 + 监控</span>
+          <span class="badge">前端 Leader</span>
+          <span class="when">2020.03 — 2023.05</span>
+        </div>
+        <p class="desc"><b>项目描述：</b>供应链 SaaS 平台，含订单、仓储、商城多条业务线，服务 150+ 企业客户。业务线扩张后发布互相阻塞、组件重复实现，因此带队建设三套基础设施。</p>
+        <ul class="bullets">
+          <li><b>微前端改造：</b>基于 qiankun / wujie 拆分平台，子应用独立部署、并行迭代，解除发布耦合</li>
+          <li><b>组件库：</b>沉淀 20+ 业务组件，接入 8 条业务线，开发效率提升约 <span class="k">25%</span></li>
+          <li><b>监控与性能：</b>故障平均发现时间 <span class="k">15 分钟 → 3 分钟</span>；核心商城首屏 <span class="k">3.5s → 1.5s</span></li>
+          <li><b>团队与效能：</b>带 5 人团队完成 Vue3 技术栈迁移，组织 8 次内训；CI/CD 部署耗时 <span class="k">15 分钟 → 5 分钟</span></li>
+        </ul>
+      </article>
+    </section>
+
+    <section>
+      <div class="sec-title"><h2>工作经历</h2></div>
+
+      <div class="job">
+        <div class="period">2023.06<small>— 至今</small></div>
+        <div>
+          <h3>星岸科技<span class="sep">/</span><span class="pos">高级前端工程师</span></h3>
+          <p>负责运营后台与内部低代码能力的架构与交付。Vue3 / TypeScript / Vite / Node.js。</p>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="period">2020.03<small>— 2023.05</small></div>
+        <div>
+          <h3>云际数据<span class="sep">/</span><span class="pos">前端 Leader</span></h3>
+          <p>管理 5 人前端团队，负责 SaaS 平台的前端架构、工程体系与交付质量。</p>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="period">2017.09<small>— 2020.02</small></div>
+        <div>
+          <h3>明川软件<span class="sep">/</span><span class="pos">前端工程师</span></h3>
+          <p>从 0 搭建 Vue 2 技术架构，交付 3 个企业级中后台项目；封装 15+ 通用组件，复用率 <span class="k">75%</span>。</p>
+        </div>
+      </div>
+
+      <div class="job">
+        <div class="period">2016.07<small>— 2017.08</small></div>
+        <div>
+          <h3>早期经历<span class="sep">/</span><span class="pos">Web 前端工程师</span></h3>
+          <p>企业级中后台、移动端 H5 与 Hybrid App、公众号与小程序；主导 jQuery → Vue 迁移。</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>

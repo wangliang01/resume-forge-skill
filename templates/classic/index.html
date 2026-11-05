@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>陈思远 · 高级前端工程师</title>
+<!--
+  模板：classic（经典单栏 · 深松石绿）
+  风格：单栏流式，项目在前、经历在后，适合 5~15 年经验的技术岗，默认 2 页。
+  改内容：只动 <body> 里的文字，不要改 class 名与 <style> 结构。
+  调密度：改 :root 里的 --base-pt（正文号）与 --lh（行高）。
+  换主色：改 --accent / --accent-soft。
+-->
+<style>
+  :root{
+    --ink:#151a21;          /* 正文墨色 */
+    --sub:#5a636f;          /* 次要信息 */
+    --faint:#8d959f;        /* 极弱信息 */
+    --line:#dfe3e8;         /* 分隔线 */
+    --accent:#14655f;       /* 主色：深松石 */
+    --accent-soft:#e8f1f0;  /* 主色浅底 */
+    --base-pt:10pt;
+    --lh:1.72;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{
+    background:#eef0f2;
+    font-family:"Noto Sans SC","Microsoft YaHei","PingFang SC","Segoe UI",sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .page{
+    width:210mm;
+    margin:0 auto;
+    padding:13mm 15mm 12mm;
+    background:#fff;
+    font-size:var(--base-pt);
+    line-height:var(--lh);
+    position:relative;
+  }
+
+  /* ===== 页眉 ===== */
+  header{ position:relative; padding-bottom:8pt; margin-bottom:11pt; }
+  header::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:2.6pt;
+    background:linear-gradient(90deg, var(--ink) 0%, var(--ink) 46%, var(--accent) 46%, var(--accent) 100%);
+    opacity:.92;
+  }
+  .name-row{ display:flex; align-items:baseline; justify-content:space-between; gap:12pt; }
+  h1{ font-size:23pt; font-weight:700; letter-spacing:.18em; line-height:1.1; }
+  .headline{
+    font-size:9.5pt; color:var(--accent); font-weight:700;
+    letter-spacing:.04em; text-align:right; line-height:1.5;
+  }
+  .headline span{ color:var(--faint); font-weight:400; }
+  .tagline{ margin-top:5pt; font-size:8.8pt; color:var(--sub); letter-spacing:.02em; }
+  .contact{
+    margin-top:6pt; display:flex; flex-wrap:wrap; align-items:center;
+    font-size:8.6pt; color:var(--sub);
+  }
+  .contact li{ list-style:none; display:flex; align-items:center; }
+  .contact li + li::before{
+    content:""; width:1px; height:8pt; background:var(--line); margin:0 7pt;
+  }
+  .contact b{ font-weight:500; color:var(--ink); letter-spacing:.02em; }
+
+  /* ===== 区块 ===== */
+  section{ margin-bottom:10pt; }
+  .sec-title{ display:flex; align-items:center; gap:7pt; margin-bottom:6pt; break-after:avoid; }
+  .sec-title h2{
+    font-size:10.5pt; font-weight:700; letter-spacing:.12em;
+    white-space:nowrap; color:var(--ink);
+  }
+  .sec-title::after{ content:""; flex:1; height:1px; background:var(--line); }
+  .sec-title .idx{
+    font-size:7.4pt; font-weight:700; color:var(--accent);
+    background:var(--accent-soft); padding:1pt 4pt; border-radius:2pt; letter-spacing:.06em;
+  }
+
+  /* ===== 概述 ===== */
+  .summary{ text-align:justify; color:#252b33; word-break:break-word; letter-spacing:.005em; }
+  .summary em{ font-style:normal; font-weight:700; color:var(--accent); }
+
+  /* ===== 技能 ===== */
+  .skills .row{
+    display:grid; grid-template-columns:78pt 1fr; gap:9pt;
+    padding:2.6pt 0; border-bottom:1px dotted #eceff2;
+  }
+  .skills .row:last-child{ border-bottom:0; }
+  .skills dt{ font-weight:700; font-size:9pt; letter-spacing:.02em; }
+  .skills dd{ color:#333a43; }
+
+  /* ===== 项目 ===== */
+  /* 项目是否允许跨页：auto = 允许（页底不留白，但项目可能被拆到两页）
+     想整块不劈改成 avoid，代价是页底可能出现整块留白，二选一。 */
+  .item{ margin-bottom:9pt; break-inside:auto; }
+  .item:last-child{ margin-bottom:0; }
+  .item-head{ display:flex; align-items:baseline; flex-wrap:wrap; gap:6pt; margin-bottom:3pt; break-after:avoid; }
+  .item-title{ font-size:10.2pt; font-weight:700; letter-spacing:.01em; }
+  .when{
+    font-size:8.2pt; font-weight:700; color:var(--accent);
+    font-variant-numeric:tabular-nums; letter-spacing:.03em;
+  }
+  .badge{
+    font-size:7.6pt; font-weight:700; color:var(--accent);
+    border:0.6pt solid #b8d2cf; background:#f4f9f8;
+    padding:0.5pt 5pt; border-radius:20pt; letter-spacing:.04em;
+  }
+  .desc{ color:var(--sub); font-size:9pt; margin-bottom:3pt; text-align:justify; }
+  .desc b{ color:#3d444d; }
+  ul.bullets{ list-style:none; }
+  ul.bullets li{
+    position:relative; padding-left:11pt; margin-bottom:1.8pt;
+    text-align:justify; letter-spacing:.005em; break-inside:avoid;
+  }
+  ul.bullets li::before{
+    content:""; position:absolute; left:.5pt; top:.68em;
+    width:4.5pt; height:1.2pt; background:var(--accent); opacity:.7;
+  }
+  ul.bullets li > b{ font-weight:700; color:var(--ink); }
+  .k{ font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums; }
+  .todo{
+    color:var(--faint); font-size:8.4pt;
+    border-left:1.6pt solid #e3e7ea; padding-left:6pt;
+  }
+
+  /* ===== 工作经历 / 教育 ===== */
+  .job{
+    display:grid; grid-template-columns:66pt 1fr; gap:9pt;
+    padding:5pt 0; border-top:1px solid #f0f2f4; break-inside:avoid;
+  }
+  .job:first-of-type{ border-top:0; padding-top:0; }
+  .job .period, .edu .period{
+    font-size:8.2pt; font-weight:700; color:var(--accent);
+    font-variant-numeric:tabular-nums; letter-spacing:.02em; padding-top:.2em;
+  }
+  .job .period small, .edu .period small{
+    display:block; font-weight:400; color:var(--faint);
+    font-size:7.6pt; letter-spacing:0; margin-top:1pt;
+  }
+  .job h3, .edu h3{ font-size:9.6pt; font-weight:700; margin-bottom:1pt; }
+  .job h3 .sep, .edu h3 .sep{ color:var(--faint); font-weight:400; margin:0 3pt; }
+  .job h3 .pos, .edu h3 .pos{ color:var(--sub); font-weight:500; }
+  .job p{ color:#3a414a; }
+  .job ul.bullets li{ margin-bottom:1.2pt; }
+  .edu{ display:grid; grid-template-columns:66pt 1fr; gap:9pt; break-inside:avoid; }
+  .edu p{ color:var(--sub); }
+
+  /* ===== 打印 ===== */
+  @page{ size:A4; margin:13mm 15mm 12mm; }
+  @media print{
+    html,body{ background:#fff; }
+    .page{ width:auto; padding:0; margin:0; background:#fff; }
+  }
+  @media screen{
+    body{ padding:10mm 0; }
+    .page{ box-shadow:0 2px 14px rgba(20,30,40,.12); }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header>
+    <div class="name-row">
+      <h1>陈思远</h1>
+      <div class="headline">高级前端工程师<br><span>求职意向：高级前端工程师 · 前端 Leader</span></div>
+    </div>
+    <div class="tagline">10 年前端 · 3 年团队 Leader 经验（5 人团队）· Vue3 / TypeScript / Node.js 全栈</div>
+    <ul class="contact">
+      <li><b>上海</b></li>
+      <li>138-0000-0000</li>
+      <li>siyuan.chen@example.com</li>
+      <li>一周内到岗</li>
+    </ul>
+  </header>
+
+  <section>
+    <div class="sec-title"><h2>个人概述</h2></div>
+    <p class="summary">
+      10 年前端开发经验，其中 3 年任前端团队 Leader（5 人团队），主线是<em>B 端中后台与 SaaS 平台的架构设计与交付</em>。主导星岸科技运营后台从 0 到 1 重构，并把低代码能力内嵌进运营体系；在云际数据建设微前端、组件库与前端监控三套基础设施，支撑 150+ 企业客户、日均 800+ 订单的业务规模。技术栈以 Vue3 + TypeScript 为主，具备 Koa + MongoDB 全栈独立交付能力。
+    </p>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>核心能力</h2></div>
+    <dl class="skills">
+      <div class="row"><dt>前端架构</dt><dd>Vue3 全家桶（Composition API / Pinia / Vue Router / Vite）、TypeScript；React + Ant Design Pro 中后台；理解响应式原理与 MVVM 设计</dd></div>
+      <div class="row"><dt>大型应用治理</dt><dd>qiankun / wujie 微前端企业级落地（多业务线子应用独立部署、并行迭代）；Design Token + 基础组件库建设；低代码页面搭建与配置化发布</dd></div>
+      <div class="row"><dt>工程化与质量</dt><dd>Webpack / Vite 构建优化，GitLab CI / Jenkins + Docker 流水线，ESLint + Prettier + Code Review 规范；Jest 单元测试、Playwright / Puppeteer 集成测试</dd></div>
+      <div class="row"><dt>性能与稳定性</dt><dd>首屏与长列表渲染优化（Lighthouse / Core Web Vitals）；前端错误监控与告警平台搭建</dd></div>
+      <div class="row"><dt>全栈与跨端</dt><dd>Node.js（Koa）接口开发与 MongoDB 数据建模；uni-app（小程序 / H5 / App）、Electron 桌面端</dd></div>
+      <div class="row"><dt>AI 辅助研发</dt><dd>AI 代码生成、单测生成、Code Review 辅助，明确「AI 提效 + 关键业务与安全逻辑人工把关」的边界</dd></div>
+    </dl>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>核心项目</h2></div>
+
+    <article class="item">
+      <div class="item-head">
+        <span class="item-title">星岸 Admin Console 重构与内部低代码引擎</span>
+        <span class="badge">主导</span>
+        <span class="when">2023.06 — 至今</span>
+      </div>
+      <p class="desc"><b>项目描述：</b>星岸科技内部运营后台，供运营与业务团队日常使用。重构前页面与交互缺乏统一规范，业务方的定制需求依赖前端排期，目标是统一 UI 规范并把常规页面转为自助配置。</p>
+      <ul class="bullets">
+        <li><b>架构重构：</b>以 Vue3 + TypeScript + Vite 重建前端基座，用 Design Token 收敛主题与交互规范，把逐页定制改为「物料 + 配置」的开发范式</li>
+        <li><b>低代码引擎：</b>设计组件物料协议与页面 Schema，打通可视化搭建、物料复用、配置化发布链路，常规运营页面由业务方自助完成</li>
+        <li><b>工程质量：</b>接入 Docker + GitLab CI/CD 统一发布，统一 Lint 与 Code Review 流程；Jest 覆盖核心工具与组件，Playwright 覆盖关键业务流程回归</li>
+        <li><b>落地效果：</b>常规页面由业务方自助配置，新增页面从「排期开发」变为「当天上线」，前端排期压力明显下降</li>
+      </ul>
+    </article>
+
+    <article class="item">
+      <div class="item-head">
+        <span class="item-title">云际数据 SaaS 前端体系：微前端 + 组件库 + 前端监控</span>
+        <span class="badge">前端 Leader</span>
+        <span class="when">2020.03 — 2023.05</span>
+      </div>
+      <p class="desc"><b>项目描述：</b>云际数据的供应链 SaaS 平台，含订单、仓储、商城多条业务线，服务 150+ 企业客户、日均 800+ 订单。业务线扩张后单体前端发布互相阻塞、组件重复实现、线上故障发现滞后，因此带队建设三套基础设施。</p>
+      <ul class="bullets">
+        <li><b>微前端改造：</b>基于 qiankun / wujie 拆分内部平台，多业务线子应用独立部署、并行迭代，解除单体应用的发布耦合</li>
+        <li><b>组件库：</b>沉淀 20+ 业务组件，接入 8 条内部业务线，开发效率提升约 <span class="k">25%</span></li>
+        <li><b>前端监控平台：</b>搭建错误采集 → 告警 → 定位链路，线上故障平均发现时间 <span class="k">15 分钟 → 3 分钟</span></li>
+        <li><b>性能优化：</b>核心商城首屏加载 <span class="k">3.5s → 1.5s</span>（Lighthouse <span class="k">70 → 85</span> 分）</li>
+        <li><b>团队与效能：</b>带 5 人团队完成 Vue3 技术栈迁移，组织 8 次内部培训；代码规范遵循率 <span class="k">95%</span>，CI/CD 部署耗时 <span class="k">15 分钟 → 5 分钟</span></li>
+        <li><b>研发协作：</b>建立设计 → 研发的 Token 同步机制与组件评审流程，新业务线接入成本从周级降到天级</li>
+      </ul>
+    </article>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>核心项目（续）</h2></div>
+
+    <article class="item">
+      <div class="item-head">
+        <span class="item-title">门店经营管理系统</span>
+        <span class="badge">个人项目 · 全栈独立开发</span>
+      </div>
+      <p class="desc"><b>项目描述：</b>面向线下连锁门店的经营管理系统，把纸质工单与 Excel 流程线上化，覆盖预约、接单、工单、库存、结算全链路。</p>
+      <ul class="bullets">
+        <li><b>全栈交付：</b>独立完成数据库设计、Koa 接口层与 Vue3 + Naive UI 前端，打通预约 → 接单 → 工单 → 库存 → 结算的业务闭环</li>
+        <li><b>工程化：</b>Docker + CI/CD 实现可重复发布，部署于云服务器，环境与配置分离</li>
+        <li><b>技术选型：</b>基于团队既有栈选择 Vue3 + Naive UI + Koa，权衡上手成本与长期维护性，一人可维护全链路</li>
+        <li><b>当前状态：</b>核心流程已开发完成并完成部署，小范围试点中</li>
+      </ul>
+    </article>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>工作经历</h2></div>
+
+    <div class="job">
+      <div class="period">2023.06<small>— 至今</small></div>
+      <div>
+        <h3>星岸科技<span class="sep">/</span><span class="pos">高级前端工程师</span></h3>
+        <p>负责运营后台与内部低代码能力的架构与交付。技术环境：Vue3 / TypeScript / Vite / Node.js。</p>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="period">2020.03<small>— 2023.05</small></div>
+      <div>
+        <h3>云际数据<span class="sep">/</span><span class="pos">前端 Leader</span></h3>
+        <p>管理 5 人前端团队，负责 SaaS 平台的前端架构、工程体系与交付质量。</p>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="period">2017.09<small>— 2020.02</small></div>
+      <div>
+        <h3>明川软件<span class="sep">/</span><span class="pos">前端工程师</span></h3>
+        <ul class="bullets">
+          <li>从 0 搭建 Vue 2 技术架构，交付 3 个企业级中后台项目</li>
+          <li>基于 Element UI 封装 15+ 通用业务组件，组件复用率 <span class="k">75%</span>；落地 ESLint + Prettier，代码提交合规率 <span class="k">60% → 95%</span></li>
+          <li>用 React + Ant Design Pro 交付 BI 数据看板，Web Worker 承载复杂计算；首屏 <span class="k">3.2s → 1.3s</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job">
+      <div class="period">2016.07<small>— 2017.08</small></div>
+      <div>
+        <h3>早期经历<span class="sep">/</span><span class="pos">Web 前端工程师</span></h3>
+        <p>两家互联网公司，负责企业级中后台、移动端 H5 与 Hybrid App（JsBridge 原生通信）、微信公众号与小程序开发，主导 jQuery → Vue 技术栈迁移。</p>
+        <p style="margin-top:1.5pt;color:#6b747f">代表项目：会员积分商城（日活 3 万+）、企业审批流中台（内部 2000+ 员工使用）</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-title"><h2>教育背景</h2></div>
+    <div class="edu">
+      <div class="period">2013.09<small>— 2017.06</small></div>
+      <div>
+        <h3>江城大学<span class="sep">/</span><span class="pos">计算机科学与技术（本科）</span></h3>
+        <p>专业排名前 10%；计算机二级 / 三级证书。</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
