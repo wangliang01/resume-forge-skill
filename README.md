@@ -13,14 +13,16 @@ agent：审计问题清单 → 重写正文（不新增事实）→ 套模板 �
 
 ```bash
 # 全局装（推荐，所有项目可用；会提示你选装到哪些 agent）
-npx skills add wangliang01/resume-forge -g
+npx skills add wangliang01/resume-forge-skill -g
 
 # 只装到 Claude Code
-npx skills add wangliang01/resume-forge -a claude-code -g
+npx skills add wangliang01/resume-forge-skill -a claude-code -g
 
 # 装进当前项目（.claude/skills/ 或 .agents/skills/，可随仓库共享）
-npx skills add wangliang01/resume-forge
+npx skills add wangliang01/resume-forge-skill
 ```
+
+仓库名是 `resume-forge-skill`，装进去的 skill 名是 **`resume-forge`**，所以落地目录是 `…/skills/resume-forge/`。
 
 `npx skills add` 需要 Node.js 22+，支持 70+ 个 agent（完整清单见 [vercel-labs/skills › docs/agents.md](https://github.com/vercel-labs/skills/blob/main/docs/agents.md)）。
 
@@ -33,7 +35,7 @@ npx skills add wangliang01/resume-forge
 | 其他（Kiro、Goose、Windsurf …） | 各自 `*/skills/` 目录 | 同左 |
 
 ```bash
-git clone https://github.com/wangliang01/resume-forge.git /tmp/rf
+git clone https://github.com/wangliang01/resume-forge-skill.git /tmp/rf
 mkdir -p ~/.agents/skills && cp -r /tmp/rf/skills/resume-forge ~/.agents/skills/
 ```
 
@@ -129,7 +131,7 @@ python skills/resume-forge/scripts/check_pdf.py 我的简历.pdf --expect 2 --re
 | 现象 | 原因 | 解决 |
 |---|---|---|
 | `npx skills add` 装完只有 `SKILL.md`，没有脚本和模板 | 仓库把 `SKILL.md` 放在根目录，CLI 会当成单文件 skill | 本仓库用 `skills/resume-forge/` 布局，正常安装是整目录 |
-| agent 认不到 skill | 装到了别的 agent 目录 | `npx skills add wangliang01/resume-forge -a claude-code`，或确认目录里有 `SKILL.md` |
+| agent 认不到 skill | 装到了别的 agent 目录 | `npx skills add wangliang01/resume-forge-skill -a claude-code`，或确认目录里有 `SKILL.md` |
 | 导出成 3 页，第 3 页只有几行 | 字号/行高偏大，或边距叠加 | 调 `--base-pt` / `--lh`，见 `template-guide.md`「调密度与页数」 |
 | 第 1 页底部大片空白 | 某个项目被整块推到下一页 | 把 `.item` 的 `break-inside` 设成 `auto`（模板默认） |
 | 色块 / 左侧栏打印不出来 | 没勾「背景图形」 | 勾选 `Background graphics` |
@@ -139,7 +141,7 @@ python skills/resume-forge/scripts/check_pdf.py 我的简历.pdf --expect 2 --re
 
 ## English
 
-Resume Forge is an installable agent skill for building Chinese-language resumes: audit → rewrite → apply one of four A4 templates → export PDF via headless Chrome → verify page count and page fill ratio. Install with `npx skills add wangliang01/resume-forge -g` (Claude Code, Codex, Cursor, Pi, Freebuff, and 70+ other agents), or copy `skills/resume-forge/` into your agent's skills directory. Sample persona data is fictional. MIT licensed.
+Resume Forge is an installable agent skill for building Chinese-language resumes: audit → rewrite → apply one of four A4 templates → export PDF via headless Chrome → verify page count and page fill ratio. Install with `npx skills add wangliang01/resume-forge-skill -g` (Claude Code, Codex, Cursor, Pi, Freebuff, and 70+ other agents), or copy `skills/resume-forge/` into your agent's skills directory. Sample persona data is fictional. MIT licensed.
 
 ## License
 
