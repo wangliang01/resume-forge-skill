@@ -1,0 +1,6 @@
+# 统一换行：Windows 上 checkout 出 CRLF 会让 bash 跑不了 *.sh
+* text=auto
+*.sh text eol=lf
+*.py text eol=lf
+*.png binary
+*.pdf binary

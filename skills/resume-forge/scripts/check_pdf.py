@@ -3,7 +3,7 @@
 
 用法:
     python check_pdf.py 简历.pdf --expect 2 --render
-    python check_pdf.py 简历.pdf --expect 2 --absent "Boss 直聘" "个人优势"
+    python check_pdf.py 简历.pdf --expect 2 --absent "近 N 年" "个人优势"
 """
 import argparse
 import sys
